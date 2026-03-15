@@ -8,7 +8,7 @@ public class BattleUnit : MonoBehaviour
     public int currentHP;
     public float actionPoint;
     public bool isDefending;
-    // public List<SkillData> skills;
+    public List<SkillData> skills;
     public bool isPlayer;
 
     public bool isDead => currentHP <= 0;

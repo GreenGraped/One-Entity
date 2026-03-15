@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    private static TurnManager instance;
+
+    public static TurnManager Instance
+    {
+        get { return instance; }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public List<BattleUnit> units;
 
     public BattleUnit GetCurrentUnit()
@@ -21,7 +41,7 @@ public class TurnManager : MonoBehaviour
     private void StartNextTurn()
     {
         units.RemoveAll(u => u.isDead);
-        // if (IsBattleOver()) return;
+        // TODO : if (IsBattleOver()) return;
         BattleUnit next = GetCurrentUnit();
         Debug.Log(next.unitName + " is turn now!");
     }
